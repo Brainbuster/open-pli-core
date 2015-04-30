@@ -8,7 +8,7 @@ require conf/license/openpli-gplv2.inc
 RDEPENDS_${PN} += "showiframe"
 
 PV = "3.0"
-PR = "r27"
+PR = "r20"
 
 S = "${WORKDIR}/"
 
@@ -20,12 +20,7 @@ inherit update-rc.d
 # This needs a small explanation; when the machine has 'switchoff' support, it switches itself off, so we don't need switchoff.mvi...
 SWITCHOFFMVI = "${@base_contains("MACHINE_FEATURES", "switchoff", "" , "switchoff.mvi", d)}"
 
-SRC_URI = " \
-	file://bootlogo.mvi \
-	file://switchoff.mvi \
-	file://bootlogo.sh \
-	file://splash.bin \
-	"
+SRC_URI = "file://bootlogo.mvi  file://switchoff.mvi file://bootlogo.sh ${@base_contains("MACHINE_FEATURES", "bootsplash", "file://splash.bin" , "", d)} ${@base_contains("MACHINE_FEATURES", "bootsplash", "file://splash480.bin" , "", d)}"
 
 BINARY_VERSION = "1.3"
 
@@ -68,10 +63,27 @@ do_install() {
 	done;
 	install -d ${D}/${sysconfdir}/init.d
 	install -m 0755 ${S}/bootlogo.sh ${D}/${sysconfdir}/init.d/bootlogo
-	
-	mkdir -p ${DEPLOY_DIR_IMAGE}
-	install -m 0644 ${S}/splash.bin ${DEPLOY_DIR_IMAGE}/splash.bin
 }
+
+inherit deploy
+do_deploy() {
+    if [ "${BRAND_OEM}" = "vuplus" ] || [ "${BRAND_OEM}" = "dags" ]; then
+	install -m 0644 splash480.bin ${DEPLOYDIR}/${BOOTLOGO_FILENAME}
+    else
+    	if [ -e splash.bin ]; then
+        	install -m 0644 splash.bin ${DEPLOYDIR}/${BOOTLOGO_FILENAME}
+    	fi
+    fi
+    if [ -e lcdsplash.bin ]; then
+    install -m 0644 lcdsplash.bin ${DEPLOYDIR}/lcdsplash.bin
+    fi
+    if [ -e lcdsplash400.bin ]; then
+        install -m 0644 lcdsplash400.bin ${DEPLOYDIR}/lcdsplash.bin
+    fi
+
+}
+
+addtask deploy before do_build after do_install
 
 pkg_preinst_${PN}_dreambox() {
 	if [ -z "$D" ]

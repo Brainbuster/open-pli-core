@@ -76,6 +76,7 @@ ENIGMA2_OPTIONAL = " \
 	enigma2-plugin-skins-pli-hd \
 	enigma2-plugin-skins-pli-hd-fullnight \
 	enigma2-plugins \
+	enigma2-3rdparty-plugins \
 	enigma2-skins \
 	picons-enigma2-meta \
 	softcams-enigma2-meta \

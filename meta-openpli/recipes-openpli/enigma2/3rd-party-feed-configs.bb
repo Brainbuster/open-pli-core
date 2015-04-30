@@ -5,7 +5,7 @@ require conf/license/openpli-gplv2.inc
 
 # Use the PLi download server, regardless of where we are. Even for "private" feeds,
 # the 3rd party plugins originate here.
-DISTRO_HOST = "downloads.pli-images.org"
+DISTRO_HOST = "feed.yt/bre2ze"
 FEEDS = "3rd-party 3rd-party-${MACHINE}"
 
 do_compile() {
