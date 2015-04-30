@@ -20,7 +20,7 @@ inherit update-rc.d
 # This needs a small explanation; when the machine has 'switchoff' support, it switches itself off, so we don't need switchoff.mvi...
 SWITCHOFFMVI = "${@base_contains("MACHINE_FEATURES", "switchoff", "" , "switchoff.mvi", d)}"
 
-SRC_URI = "file://bootlogo.mvi  file://switchoff.mvi file://bootlogo.sh ${@base_contains("MACHINE_FEATURES", "bootsplash", "file://splash.bin" , "", d)} ${@base_contains("MACHINE_FEATURES", "bootsplash", "file://splash480.bin" , "", d)}"
+SRC_URI = "file://bootlogo.mvi  file://switchoff.mvi file://bootlogo.sh ${@base_contains("MACHINE_FEATURES", "bootsplash", "file://splash.bin" , "", d)}"
 
 BINARY_VERSION = "1.3"
 
