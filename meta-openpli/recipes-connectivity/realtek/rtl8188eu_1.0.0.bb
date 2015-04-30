@@ -25,9 +25,6 @@ do_install() {
 	install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
 	install -m 0644 ${S}/8188eu.ko ${D}${base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
 
-	install -d ${D}/lib/firmware
-    	install -d ${D}/lib/firmware/rtlwifi
-    	install -m 0644 ${S}/rtl8188eufw.bin ${D}/lib/firmware/rtlwifi/rtl8188eufw.bin
 }
 
 SRC_URI[md5sum] = "addb3bc7b06ecdd86cc4de15e14fc67d"
