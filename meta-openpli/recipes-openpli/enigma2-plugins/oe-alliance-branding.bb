@@ -11,9 +11,9 @@ inherit gitpkgv autotools-brokensep pythonnative
 PACKAGES += " ${PN}-src"
 
 SRCREV = "${AUTOREV}"
-PV = "2.3+git${SRCPV}"
-PKGV = "2.3+git${GITPKGV}"
-PR = "r${DATETIME}"
+PV = "2.2+git${SRCPV}"
+PKGV = "2.2+git${GITPKGV}"
+PR = "r1"
 
 SRC_URI="git://github.com/oe-alliance/branding-module.git;protocol=git"
 
