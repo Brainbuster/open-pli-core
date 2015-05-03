@@ -2,13 +2,9 @@ LICENSE = "CLOSED"
 
 DESCRIPTION = "Firmware for RTL8188EU"
 
-inherit gitpkgv
+SRC_URI = "https://github.com/lwfinger/rtl8188eu/archive/master.zip"
 
-SRC_URI = "https://github.com/lwfinger/rtl8188eu.git;protocol=https"
-
-
-
-S = "${WORKDIR}/git"
+S = "${WORKDIR}/rtl8188eu-master"
 
 do_install() {
 	install -d ${D}${base_libdir}/firmware/rtlwifi
@@ -20,5 +16,5 @@ FILES_${PN} += "${base_libdir}/firmware"
 
 PACKAGE_ARCH = "all"
 
-SRC_URI[md5sum] = "93d5200fc2ea98fb75562a800cdd6a6b"
-SRC_URI[sha256sum] = "c6a140628c5bfb1210a741975cfe5e28c11ab3cd206020d2e7e2f13cb330987c"
+SRC_URI[md5sum] = "dcb6af10103a3d90bb5ce9f254843ba6"
+SRC_URI[sha256sum] = "d93c2b265c40fefd601ce7c686891bb96aae7475fd50955274734c60559fc05d"
